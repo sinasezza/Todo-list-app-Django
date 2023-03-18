@@ -1,0 +1,24 @@
+body{
+    background-color: dimgrey;
+    font-size: 20px;
+}
+
+#task_list{
+    border: 2px solid black;
+    padding: 10px;
+    background-color: slategray;
+    
+}
+/* --------------------------------- */
+#task_list ul{
+    padding: 0px;
+    background-color: darksalmon;
+    margin: 20px;
+    list-style-type: none;
+}
+/* --------------------------------- */
+#task_list ul li{
+    margin: 2px;
+    height: 50px;
+    font-size: 40px;
+}

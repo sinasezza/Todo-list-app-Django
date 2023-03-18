@@ -1,0 +1,17 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Task List{% endblock title %}
+
+{% block content %}
+    <h1>Tasks :</h1>
+    <div id="task_list">
+        <ul >
+            <li style="background-color:orange;"> Task Title</li>
+        {% for task in tasks %}
+            <li> <a href="{% url 'app:task-detail' task.user.pk task.title %}">{{task}}</a> </li>
+        {% empty %}
+            <h3>you have no task ... </h3><a>Create one</a>
+        {% endfor %}
+        </ul>
+    </div>
+{% endblock content %}
