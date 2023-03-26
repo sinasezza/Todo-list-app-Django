@@ -1,0 +1,14 @@
+{% extends 'base/base.html' %}
+
+
+{% block title %} Delete : {{task.title}} {% endblock title %}
+
+
+{% block content %}
+    <form action="" method="POST">
+        {% csrf_token %}
+        <h4> Are you sure you want to delete the task : {{task.title}} ?</h4>
+        <input type="submit" value="Yes, Delete it">
+        <button><a href="{% url 'app:task-list' %}" style="text-decoration: none;color:black;">No, Go Back</a></button>
+    </form>
+{% endblock content %}

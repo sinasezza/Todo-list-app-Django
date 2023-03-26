@@ -3,15 +3,34 @@
 {% block title %}Task List{% endblock title %}
 
 {% block content %}
-    <h1>Tasks :</h1>
+
+    {% if request.user.is_authenticated %}
+        <p>{{request.user}}</p>
+        <a href="{% url 'app:logout' request.user.id %}">Logout</a>
+    {% else %}
+        <p>You Are not Signed in</p>
+        <a href="{% url 'app:login' %}">Login</a>
+    {% endif %}
+    
+
+    <hr>
+
+    <h1>My Todo List :</h1>
     <div id="task_list">
+        <a href="{% url 'app:task-create' %}">add Task</a>
         <ul >
-            <li style="background-color:orange;"> Task Title</li>
+            <li style="background-color:orange;"> Task Title - You Have {{numbers_of_incomplete_tasks}} Incomplete Tasks.</li>
         {% for task in tasks %}
-            <li> <a href="{% url 'app:task-detail' task.user.pk task.title %}">{{task}}</a> </li>
+            <li>
+                <a href="{% url 'app:task-detail' task.user.username task.pk task.title %}">{{task}}</a> 
+                <a href="{% url 'app:task-update' task.id %}">Edit</a> |
+                <a href="{% url 'app:task-delete' task.id %}">Delete</a>
+            </li>
         {% empty %}
-            <h3>you have no task ... </h3><a>Create one</a>
+            <h3>you have no task ... </h3>
         {% endfor %}
         </ul>
     </div>
+
+     
 {% endblock content %}

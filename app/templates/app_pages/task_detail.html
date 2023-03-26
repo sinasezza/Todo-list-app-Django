@@ -1,10 +1,12 @@
 {% extends 'base/base.html' %}
 
-{% block title %}{{task.title}}{% endblock title %}
+{% block title %}Task : {{task.title}}{% endblock title %}
 
 {% block content %}
-    <h2>{{task.title}}</h2>
-    <p>{{task.description}}</p>
-    <p>author :</p>
-    <p>{{task.user.username}}</p>
+    <div id="task_detail">
+        <h2>{{task.title}}</h2>
+        <p>{{task.description}}</p>
+        <p>author : {{task.user.username}}</p>
+        <p>date created : {{task.created}}</p>
+    </div>
 {% endblock content %}

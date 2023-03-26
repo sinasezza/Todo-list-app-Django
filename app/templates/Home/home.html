@@ -5,5 +5,5 @@
 {% block content %}
 
     <h1> Welcome </h1>
-    <a href="/tasks/"> list of tasks </a>
+    <a href="{% url 'app:task-list' %}"> list of tasks </a>
 {% endblock content %}

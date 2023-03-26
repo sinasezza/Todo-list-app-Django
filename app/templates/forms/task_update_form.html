@@ -1,0 +1,14 @@
+{% extends 'base/base.html' %}
+
+{% block title %} Update : {{task.title}} {% endblock title %}
+
+
+{% block content %} 
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Update">
+    </form>
+
+    <h4><a href="{% url 'app:task-list' %}">Go back</a></h4>
+{% endblock content %}
