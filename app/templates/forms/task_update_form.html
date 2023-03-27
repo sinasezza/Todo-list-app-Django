@@ -4,11 +4,41 @@
 
 
 {% block content %} 
-    <form action="" method="POST">
-        {% csrf_token %}
-        {{form.as_p}}
-        <input type="submit" value="Update">
-    </form>
 
-    <h4><a href="{% url 'app:task-list' %}">Go back</a></h4>
+    <div class="container-fluid">
+        <div class="row">
+            <span><i class="fa fa-arrow-circle-left"></i> <a href="{% url 'app:task-list' %}">Go back</a></span>
+        </div>
+        <div class="row"><h3>Update Task Form</h3></div>
+    </div>
+
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group input-group my-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text h-100"> <i class="fa fa-wpforms"></i> </span>
+            </div>
+            <input name="{{form.title.name}}" class="form-control" placeholder="{{form.title.label}}" type="text" value="{{form.title.value}}">
+        </div>
+        
+        <div class="form-group input-group my-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text h-100"> <i class="fas fa-edit"></i> </span>
+            </div>
+            <textarea name="{{form.description.name}}" id="" cols="30" rows="10" placeholder="{{form.description.label}}" style="resize: none;">{{form.description.value}}</textarea>
+        </div>
+
+        <div class="form-group input-group my-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text h-100"> {{form.complete.label}} </span>
+            </div>
+            <input type="checkbox" name="{{form.complete.name}}" id="" style="width:37px;height:37px;margin-left: 10px;" {% if form.complete.value %} checked {% endif %}>
+        </div>
+
+        <div class="form-group my-3">
+            <button type="submit" class="btn btn-primary btn-block"> Login </button>
+        </div>
+        
+    </form>
+    
 {% endblock content %}

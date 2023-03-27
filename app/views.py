@@ -5,7 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from django.urls import reverse_lazy
-from . import models , forms
+from . import models
 
 class HomePageView(View):
     def get(self,request,*args, **kwargs):
@@ -20,6 +20,13 @@ class TaskListView(LoginRequiredMixin,ListView):
         context =  super().get_context_data(**kwargs)
         context['tasks'] = context['tasks'].filter(user=self.request.user)
         context['numbers_of_incomplete_tasks'] = context['tasks'].filter(complete=False).count()
+        
+        search_input = self.request.GET.get('search-area') or ''
+        if search_input :
+            context['tasks'] = context['tasks'].filter(title__startswith=search_input)
+        
+        context['search_input'] = search_input
+        
         return context
     
 # ===================================

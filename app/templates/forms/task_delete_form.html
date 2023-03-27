@@ -5,10 +5,17 @@
 
 
 {% block content %}
-    <form action="" method="POST">
+
+    <div class="container-fluid">
+        <div class="row">
+            <span><i class="fa fa-arrow-circle-left"></i> <a href="{% url 'app:task-list' %}">Go back</a></span>
+        </div>
+    </div>
+
+    <form method="POST">
         {% csrf_token %}
         <h4> Are you sure you want to delete the task : {{task.title}} ?</h4>
-        <input type="submit" value="Yes, Delete it">
-        <button><a href="{% url 'app:task-list' %}" style="text-decoration: none;color:black;">No, Go Back</a></button>
+        <input type="submit" class="bg-dark btn fw-bold text-light " value="Yes, Delete it"> 
     </form>
+
 {% endblock content %}

@@ -4,27 +4,48 @@
 
 {% block content %}
 
-    {% if request.user.is_authenticated %}
-        <p>{{request.user}}</p>
-        <a href="{% url 'app:logout' request.user.id %}">Logout</a>
-    {% else %}
-        <p>You Are not Signed in</p>
-        <a href="{% url 'app:login' %}">Login</a>
-    {% endif %}
+    <div class="container-fluid bg-danger">
+        {% if request.user.is_authenticated %}
+            <div class="col" style="text-align: right;"><a style="text-decoration: none;color: white;" href="{% url 'app:logout' request.user.id %}">Logout</a></div>
+            <h1>Hello {{request.user|title}}</h1>
+        {% else %}
+            <a href="{% url 'app:login' %}">Login</a>
+        {% endif %}
+    </div>
     
 
     <hr>
 
     <h1>My Todo List :</h1>
-    <div id="task_list">
-        <a href="{% url 'app:task-create' %}">add Task</a>
-        <ul >
-            <li style="background-color:orange;"> Task Title - You Have {{numbers_of_incomplete_tasks}} Incomplete Tasks.</li>
+    <div id="task_list" class="container">
+        <div class="row"><a href="{% url 'app:task-create' %}">add Task</a></div>
+
+        <form action="" method="get">
+            <input type="text" name="search-area" value="{{search_input}}">
+            <input type="submit" value="Search">
+        </form>
+
+        <ul class="container">
+            {% if tasks.count %}
+                <li style="background-color:orange;" class="row"> <div class="col-5">Task Title</div>  <div class="col-7">You Have {{numbers_of_incomplete_tasks}} Incomplete Task{{numbers_of_incomplete_tasks|pluralize:"s"}}</div></li>
+            {% endif %}
         {% for task in tasks %}
-            <li>
-                <a href="{% url 'app:task-detail' task.user.username task.pk task.title %}">{{task}}</a> 
-                <a href="{% url 'app:task-update' task.id %}">Edit</a> |
-                <a href="{% url 'app:task-delete' task.id %}">Delete</a>
+            <li class="row">
+                <div class="col-md-9 col-12">
+                    {% if task.complete %}
+                            <div class="task-complete-icon"></div>
+                            <i><s><a href="{% url 'app:task-detail' task.user.username task.pk task.title %}" title="{{task.cescripiton}}">{{task}}</a></s></i>
+                    {% else %}
+                            <div class="task-incomplete-icon"></div>
+                            <i><a href="{% url 'app:task-detail' task.user.username task.pk task.title %}" title="{{task.description}}">{{task}}</a></i>
+                    {% endif %}
+                    
+                </div> 
+
+                <div class="col-md-3 col-12">
+                    <a href="{% url 'app:task-update' task.id %}">Edit</a> |
+                    <a href="{% url 'app:task-delete' task.id %}">Delete</a>
+                </div>
             </li>
         {% empty %}
             <h3>you have no task ... </h3>

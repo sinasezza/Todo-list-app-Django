@@ -4,6 +4,30 @@
 
 {% block content %}
 
-    <h1> Welcome </h1>
-    <a href="{% url 'app:task-list' %}"> list of tasks </a>
+    <div class="container-fluid" id="home_page_header" style=" background-color: lightcoral;">
+        <div class="row">
+            <div class="col text-center">
+                <h1> Welcome </h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <h2>this is a Todo list Web Application</h2>
+            <h2>you should have an Account to save your Tasks</h2>
+        </div>
+    </div>
+
+    <div class="container-fluid bg-warning w-100 ms-0" >
+        <div class="row">
+            <div class="col">
+                Want To Create Account ? <a href="{% url 'app:signup' %}">Signup</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                Already Have An Account ? <a href="{% url 'app:login' %}">Login</a>
+            </div>
+        </div>
+    </div>
+    
 {% endblock content %}

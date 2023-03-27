@@ -3,10 +3,21 @@
 {% block title %}Task : {{task.title}}{% endblock title %}
 
 {% block content %}
-    <div id="task_detail">
-        <h2>{{task.title}}</h2>
-        <p>{{task.description}}</p>
-        <p>author : {{task.user.username}}</p>
-        <p>date created : {{task.created}}</p>
+    <div class="container my-auto h-50" id="task_detail">
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4 text-center"><h2>{{task.title}}</h2></div>
+            <div class="col-4"></div>
+        </div>
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4"><p style="border: 3px double blueviolet;border-radius: 20px;padding:10px">{{task.description}}</p></div>
+            <div class="col-4"></div>
+        </div>
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4 text-center"><p>date created : {{task.created}}</p></div>
+            <div class="col-4"></div>
+        </div>
     </div>
 {% endblock content %}

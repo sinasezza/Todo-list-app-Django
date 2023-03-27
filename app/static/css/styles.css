@@ -1,5 +1,9 @@
 body{
-    background-color: dimgrey;
+    background-color: burlywood !important;
+}
+/* --------------------------------- */
+.container{
+    background-color: #f4f4f4;
     font-size: 20px;
 }
 /* --------------------------------- */
@@ -21,23 +25,40 @@ body{
 #task_list ul{
     padding: 0px;
     background-color: darksalmon;
-    margin: 20px;
     list-style-type: none;
 }
 /* --------------------------------- */
 #task_list ul li{
     margin: 2px;
-    height: 50px;
     font-size: 40px;
+    border-bottom: white 3px solid;
 }
 /* --------------------------------- */
 #task_detail{
     border: 3px double green;
     background-color: beige;
-    text-align: center;
+    
 }
 /* --------------------------------- */
 #task_create_form{
     text-align: center;
     background-color: darksalmon;
+}
+/* --------------------------------- */
+.task-complete-icon{
+    display: inline-flex;
+    height: 20px;
+    width: 20px;
+    background-color: aquamarine;
+    margin-inline: 10px;
+    border-radius: 50%;
+}
+/* --------------------------------- */
+.task-incomplete-icon{
+    display: inline-flex;
+    height: 20px;
+    width: 20px;
+    background-color: dimgrey;
+    margin-inline: 10px;
+    border-radius: 50%;
 }
